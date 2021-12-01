@@ -15,8 +15,8 @@ library(leafem)
 library(ggplot2)
 library(graphics)
 library(tidyverse)
-library(spData)
-library(spDataLarge)
+#library(spData)
+#library(spDataLarge)
 
 
 #Lectura datos zonas
@@ -138,8 +138,9 @@ ui <- dashboardPage(
       tabName = "mapa_material",
       box(
         title = "Mapa registros del patrimonio material",
-        leafletOutput(outputId = "mapa"),
+        leafletOutput(outputId = "mapa",width="100%", height = 800),
         width = 12
+        
       )
     ),
     
@@ -147,7 +148,7 @@ ui <- dashboardPage(
       tabName = "casco_historico",
       box(
         title = "Mapa registros del casco histórico",
-        leafletOutput(outputId = "mapa_1"),
+        leafletOutput(outputId = "mapa_1",width="100%", height = 600),
         width = 6
       ),
       box(
@@ -162,7 +163,7 @@ ui <- dashboardPage(
       fluidRow(
         box(
           title = "Registros del patrimonio inmaterial",
-          DTOutput(outputId = "tabla"),
+          DTOutput(outputId = "tabla",width="100%", height = 800),
           width = 12
         )
       )),
@@ -171,20 +172,10 @@ ui <- dashboardPage(
       fluidRow(
         box(
           title = "Valoración de los recursos del patrimonio material",
-          plotlyOutput(outputId = "grafico_evaluacion"),
+          plotlyOutput(outputId = "grafico_evaluacion",width="100%", height = 800),
           width = 12
         ))))
   ))
-
-#,
-# tabPanel( 
-
-#dashboardHeader(title = "Patrimonio material")
-
-# )
-
-
-# ))
 
 
 server <- function(input, output, session) {
@@ -224,7 +215,7 @@ server <- function(input, output, session) {
     registros %>%
       st_drop_geometry() %>%
       dplyr::select(codigo,denominacion, subcategoria, estado,evaluacion_multicriterio)%>%
-      datatable(registros, options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'), pageLength = 8))
+      datatable(registros, options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'), pageLength = 20))
   }) 
   
   output$tabla_1 <- renderDT({
@@ -233,7 +224,7 @@ server <- function(input, output, session) {
     recursos_casco %>%
       st_drop_geometry() %>%
       dplyr::select(codigo,denominacion, subcategoria, estado,id_cuadrante)%>%
-      datatable(recursos_casco, options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'), pageLength = 5))
+      datatable(recursos_casco, options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'), pageLength = 13))
   })
   
   output$mapa <- renderLeaflet({
