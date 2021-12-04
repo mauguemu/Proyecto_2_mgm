@@ -95,7 +95,7 @@ recursos_casco <- cuadrantes_recursos[casco_hist, , op = st_within]
 # Componentes de la aplicación Shiny
 # Definición del objeto ui
 
-ui <- dashboardPage(
+ui <- dashboardPage(skin = "purple",
   
   #tabsetPanel(
   #  tabPanel(
@@ -137,7 +137,7 @@ ui <- dashboardPage(
     tabItem(
       tabName = "mapa_material",
       box(
-        title = "Mapa registros del patrimonio material",
+        title = "Mapa registros del patrimonio material", solidHeader = TRUE,status = "success",
         leafletOutput(outputId = "mapa",width="100%", height = 800),
         width = 12
         
@@ -147,12 +147,12 @@ ui <- dashboardPage(
     tabItem(
       tabName = "casco_historico",
       box(
-        title = "Mapa registros del casco histórico",
+        title = "Mapa registros del casco histórico", solidHeader = TRUE, status = "success",
         leafletOutput(outputId = "mapa_1",width="100%", height = 600),
         width = 6
       ),
       box(
-        title = "Registros del casco histórico",
+        title = "Registros del casco histórico",solidHeader = TRUE, status = "danger",
         DTOutput(outputId = "tabla_1"),
         width = 6
       )
@@ -162,16 +162,16 @@ ui <- dashboardPage(
       tabName = "tabla_material",
       fluidRow(
         box(
-          title = "Registros del patrimonio inmaterial",
+          title = "Registros del patrimonio inmaterial",  solidHeader = TRUE,status = "info",
           DTOutput(outputId = "tabla",width="100%", height = 800),
           width = 12
         )
       )),
     tabItem(
-      tabName = "grafico_material",
+      tabName = "grafico_material", 
       fluidRow(
         box(
-          title = "Valoración de los recursos del patrimonio material",
+          title = "Valoración de los recursos del patrimonio material", solidHeader = TRUE,status = "warning",
           plotlyOutput(outputId = "grafico_evaluacion",width="100%", height = 800),
           width = 12
         ))))
