@@ -5,9 +5,9 @@ account: mauguemu
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5238785
-bundleId: 5312660
+bundleId: 5325899
 url: https://mauguemu.shinyapps.io/Proyecto_2_mgm/
-when: 1638336051.45113
-lastSyncTime: 1638336051.45113
+when: 1638589330.75998
+lastSyncTime: 1638589330.75998
 asMultiple: FALSE
 asStatic: FALSE

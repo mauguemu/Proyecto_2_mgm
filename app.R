@@ -15,6 +15,7 @@ library(leafem)
 library(ggplot2)
 library(graphics)
 library(tidyverse)
+library(RColorBrewer)
 #library(spData)
 #library(spDataLarge)
 
@@ -96,11 +97,12 @@ recursos_casco <- cuadrantes_recursos[casco_hist, , op = st_within]
 # Definición del objeto ui
 
 ui <- dashboardPage(skin = "purple",
-  
+
   #tabsetPanel(
   #  tabPanel(
   
-  dashboardHeader(title = "Patrimonio material"),
+  dashboardHeader(title ="Patrimonio material"),
+  
   dashboardSidebar(sidebarMenu(
     menuItem(
       text = "Filtros",
@@ -171,7 +173,7 @@ ui <- dashboardPage(skin = "purple",
       tabName = "grafico_material", 
       fluidRow(
         box(
-          title = "Valoración de los recursos del patrimonio material", solidHeader = TRUE,status = "warning",
+          title = "Valoración de los recursos del patrimonio material", solidHeader = TRUE,status = "primary",
           plotlyOutput(outputId = "grafico_evaluacion",width="100%", height = 800),
           width = 12
         ))))
@@ -382,6 +384,7 @@ server <- function(input, output, session) {
       ggtitle("Valoración de los recursos patrimoniales") +
       ylab("Recurso") +
       xlab("Valoración multicriterio") +
+      scale_fill_manual(values=brewer.pal(n = 5, name = "Blues"))+
       geom_col()%>%
       config(locale = "es")
     
